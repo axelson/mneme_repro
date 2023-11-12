@@ -1,21 +1,21 @@
 # MnemeRepro
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `mneme_repro` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:mneme_repro, "~> 0.1.0"}
-  ]
-end
+Repro with:
+```bash
+mix deps.get
+mix test
+# Then press: `k y`
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/mneme_repro>.
+The test then fails because it generated `nil` as the pattern for `%DateTime{}`:
 
+```
+  1) test repro (MnemeReproTest)
+     test/mneme_repro_test.exs:5
+     match (=) failed
+     code:  auto_assert(MnemeRepro.hello())
+     left:  [%{started_at: nil, total_seconds: "1800"}]
+     right: [%{started_at: #DateTime<2023-11-03 14:00:00-10:00 HST Pacific/Honolulu>, total_seconds: "1800"}]
+     stacktrace:
+       /mnt/arch_linux/home/jason/dev/tmp/mneme_repro/test/mneme_repro_test.exs:6: (file)
+```
